@@ -55,41 +55,35 @@ project 1 - A Random Quote Generator
 ***/function printQuote () {
   // 1. Create a variable that calls the getRandomQuote() 
   // function
-  var idk = getRandomQuote();
+  letQuoteObject = getRandomQuote();
   // 2. Create a variable that initiates your HTML string with 
   // the first two <p></p> elements, their classNames, 
   // and the quote and source properties, but leave off 
   // the second closing `</p>` tag for now
-  var initHTML = <p class="quote">quote text</p>
-  <p class="source">quote source
-
-    <span class="citation">quote citation</span>
-    <span class="year">quote year</span> </p>
-
-  // 3. Use an if statement to check if the citation property 
-  // exists, and if it does, concatenate a <span></span> 
-  // element, appropriate className, and citation property 
-  // to the HTML string
-  if (quotes.citation) {
-    <span></span>
-  } else {
-
+  let html = `
+    <p class ="quote"> ${quoteObject['quote']}</p>
+    <p class ="source"> ${quoteObject['source']}`;
+  // if statements to concatenate <span> element to html if quote object contains citation, year and/or tags
+  if (quoteObject['citation']) {
+      html += `<span class="citation"> ${quoteObject['citation']}</span>`;
+  } if (quoteObject['year']) {
+      html += `<span class ="year"> ${quoteObject['year']}</span>`;
+  } if (quoteObject['tags']) {
+      html += `<span class="tags"><br> Tags: ${quoteObject['tags'].join(", ")} </span>`
   }
-  // 4. Use an if statement to check of the year property exists, 
-  // and if it does, concatenate a <span></span> element, 
-  // appropriate className, and year property to the HTML 
-  //string
-  if (quotes.year) {
-    <span></span>
-  } else {
-
+  html += '</p>';
+  // returns full html string in quote-box id
+  document.getElementById('quote-box').innerHTML = html;
+  // creates a random RGB color and changes background to that color
+  let red = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  let randomRGB = `rgb(${red}, ${blue}, ${green})`;
+  document.body.style.backgroundColor = randomRGB;
   }
-  // 5. After the two if statements, concatenate the closing </p> 
-  // tag to the HTML string
 
-  // 6. set the innerHTML of the quote-box div to equal the 
-  // complete HTML string
-}
+// automatically calls printQuote() every 5 seconds
+setInterval(printQuote, 5000);
 
 
 
