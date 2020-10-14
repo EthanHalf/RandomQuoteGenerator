@@ -30,12 +30,13 @@ project 1 - A Random Quote Generator
           citation: 'youtube',
           year: 2011,
           }];
-
+          console.log(quotes);
 
 
 /***
  * `getRandomQuote` function
-***/function getRandomQuote (quotes) {
+***/function getRandomQuote () {
+  console.log(quotes);
   // 1. Create a variable that generates a random number
   // between zero and the last index in the `quotes` array
   var randomNumberGenerator = Math.floor(Math.random() * quotes.length);
@@ -47,7 +48,7 @@ project 1 - A Random Quote Generator
   console.log(randomQuote);
   return randomQuote;
 }
-
+getRandomQuote("this is the quotes parameter logs out");
 
 
 /***
@@ -55,7 +56,9 @@ project 1 - A Random Quote Generator
 ***/function printQuote () {
   // 1. Create a variable that calls the getRandomQuote() 
   // function
-  letQuoteObject = getRandomQuote();
+  
+  let quoteObject = getRandomQuote();
+  
   // 2. Create a variable that initiates your HTML string with 
   // the first two <p></p> elements, their classNames, 
   // and the quote and source properties, but leave off 
@@ -69,7 +72,7 @@ project 1 - A Random Quote Generator
   } if (quoteObject['year']) {
       html += `<span class ="year"> ${quoteObject['year']}</span>`;
   } if (quoteObject['tags']) {
-      html += `<span class="tags"><br> Tags: ${quoteObject['tags'].join(", ")} </span>`
+      html += `<span class="tags"> <br> Tags: ${quoteObject['tags'].join(", ")} </span>`
   }
   html += '</p>';
   // returns full html string in quote-box id
@@ -83,6 +86,8 @@ project 1 - A Random Quote Generator
   }
 
 // automatically calls printQuote() every 5 seconds
+printQuote();
+
 setInterval(printQuote, 5000);
 
 
